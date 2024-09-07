@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAILY EASE COMPANION</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Recursive:wght@300..1000&display=swap');
+
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #DBAFA0;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+        }
+
+        .navi {
+            background-color: #49243E;
+            color: white;
+            margin: 0;
+            height: 80px;
+            width: 100%;
+            max-width: 100%;
+            /* Limit the max-width of .navi to 100% of viewport width */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 1000;
+            border-bottom: 3px solid white;
+        }
+
+        h1 {
+            padding: 0;
+            margin: 0;
+        }
+
+        .options {
+            visibility: hidden;
+            opacity: 0;
+            position: fixed;
+            top: 80px;
+            right: 0;
+            bottom: 0;
+            background-color: #49243E;
+            width: 250px;
+            padding: 20px;
+            box-sizing: border-box;
+            z-index: 999;
+            transition: transform 0.3s ease, visibility 0s linear 0.3s, opacity 0.3s;
+            overflow-y: auto;
+        }
+
+        .outoptions {
+            background-color: #BB8493;
+            margin-top: 80px;
+            height: auto;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            /* Arrange links in a column */
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            border-radius: 20px;
+            border: 4px solid #3c3633;
+            box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.3);
+        }
+
+        .options.show {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(0);
+            transition: transform 0.3s ease, visibility 0s linear 0s, opacity 0.3s;
+        }
+
+        .options>a,
+        .outoptions>a {
+            font-size: 25px;
+            background-color: #49243E;
+            display: block;
+            text-decoration: none;
+            color: white;
+            padding: 10px 20px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border: 3px solid #3c3633;
+            transition: background-color 0.3s, font-size 0.3s;
+        }
+
+        .options>a:hover,
+        .outoptions>a:hover {
+            background-color: #704264;
+            font-size: 30px;
+        }
+
+        .menu-toggle {
+            display: block;
+            cursor: pointer;
+            position: absolute;
+            top: 30px;
+            right: 50px;
+            z-index: 1000;
+        }
+
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: #FFF;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        @media(max-width:768px) {
+            .navi {
+                height: 100px;
+            }
+
+            .menu-toggle {
+                right: 20px;
+            }
+        }
+
+        @media(max-width:564px) {
+            h1 {
+                font-size: 35px;
+            }
+        }
+
+        @media(max-width:425px) {
+            
+            h1{
+                font-size: 24px;
+                position: relative;
+            }
+            .menu-toggle {
+                top: 20px;
+                right: 20px;
+            }
+
+            .outoptions {
+                margin-top: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navi">
+        <h1>DAILY EASE COMPANION</h1>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </div>
+    <div class="options" id="menu">
+        <a href="todo.html">To-Do List</a>
+        <a href="password.html">Password Manager</a>
+        <a href="units.html">Units Converter</a>
+        <a href="currency.html">Currency Converter</a>
+        <a href="bmi.html">BMI Calculator</a>
+        <a href="index.html">Home</a>
+    </div>
+    <div class="outoptions">
+        <a href="going.html">Going To Shop</a>
+        <a href="already.html">Already In Shop</a>
+    </div>
+    <p>created by team Invincibles MRCET</p>
+
+    <script>
+        function toggleMenu() {
+            var options = document.querySelector('.options');
+            options.classList.toggle('show');
+        }
+    </script>
+</body>
+
+</html>

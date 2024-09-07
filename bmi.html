@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAILY EASE COMPANION</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Recursive:wght@300..1000&display=swap');
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #DBAFA0;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+        }
+
+        .navi {
+            background-color: #49243E;
+            color: white;
+            margin: 0;
+            height: 80px;
+            width: 100%;
+            max-width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 1000;
+            border-bottom: 3px solid white;
+        }
+
+        h1 {
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #BB8493;
+            border-radius: 20px;
+            box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.3);
+        }
+
+        .todo-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .todo-item {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .todo-item input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .todo-item label {
+            flex-grow: 1;
+            margin: 0;
+        }
+
+        .todo-item button {
+            margin-left: 10px;
+            padding: 5px 10px;
+            background-color: #49243E;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .todo-item button:hover {
+            background-color: #704264;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Recursive:wght@300..1000&display=swap');
+
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #DBAFA0;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+}
+
+.navi {
+    background-color: #49243E;
+    color: white;
+    margin: 0;
+    height: 80px;
+    width: 100%;
+    max-width: 100%;
+    /* Limit the max-width of .navi to 100% of viewport width */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1000;
+    border-bottom: 3px solid white;
+}
+
+h1 {
+    padding: 0;
+    margin: 0;
+}
+
+.options {
+    visibility: hidden;
+    opacity: 0;
+    position: fixed;
+    top: 80px;
+    right: 0;
+    bottom: 0;
+    background-color: #49243E;
+    width: 250px;
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 999;
+    transition: transform 0.3s ease, visibility 0s linear 0.3s, opacity 0.3s;
+    overflow-y: auto;
+}
+
+.outoptions {
+    background-color: #BB8493;
+    margin-top: 80px;
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* Arrange links in a column */
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    border: 4px solid #3c3633;
+    box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.3);
+}
+
+.options.show {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(0);
+    transition: transform 0.3s ease, visibility 0s linear 0s, opacity 0.3s;
+}
+
+.options>a,
+.outoptions>a {
+    font-size: 25px;
+    background-color: #49243E;
+    display: block;
+    text-decoration: none;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: 3px solid #3c3633;
+    transition: background-color 0.3s, font-size 0.3s;
+}
+
+.options>a:hover,
+.outoptions>a:hover {
+    background-color: #704264;
+    font-size: 30px;
+}
+
+.menu-toggle {
+    display: block;
+    cursor: pointer;
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    z-index: 1000;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: #FFF;
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+p {
+    text-align: center;
+    margin-top: 20px;
+}
+
+@media(max-width:768px) {
+    .navi {
+        height: 100px;
+    }
+
+    .menu-toggle {
+        right: 20px;
+    }
+}
+
+@media(max-width:564px) {
+    h1 {
+        font-size: 35px;
+    }
+}
+
+@media(max-width:425px) {
+
+    h1 {
+        font-size: 24px;
+        position: relative;
+    }
+
+    .menu-toggle {
+        top: 20px;
+        right: 20px;
+    }
+
+    .outoptions {
+        margin-top: 0;
+    }
+}
+
+/* CSS styles from your provided code */
+
+/* Additional styles for the shopping list */
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #BB8493;
+    border-radius: 20px;
+    box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.3);
+}
+
+.container h2 {
+    margin-top: 0;
+    text-align: center;
+    font-size: 24px;
+    color: white;
+}
+
+.container input[type="text"],
+.container input[type="password"] {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    box-sizing: border-box;
+    font-size: 18px;
+}
+
+.container button {
+    background-color: #49243E;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s;
+}
+
+.container button:hover {
+    background-color: #704264;
+}
+
+.container {
+    padding: 20px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.item input[type="text"],
+.item input[type="number"] {
+    flex: 1;
+    margin-right: 10px;
+    padding: 8px;
+    font-size: 16px;
+}
+
+.item input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.item.done {
+    text-decoration: line-through;
+    color: gray;
+}
+
+.delete-btn {
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Styles to keep entry panels always at the top */
+.entry-panels {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.entry-panels input[type="text"],
+.entry-panels input[type="number"] {
+    flex: 1;
+    margin-right: 10px;
+    padding: 8px;
+    font-size: 16px;
+}
+
+.entry-panels button {
+    padding: 8px 16px;
+    background-color: #49243E;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.entry-panels button:hover {
+    background-color: #704264;
+}
+
+/* Additional styles for responsiveness and checkbox size */
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #BB8493;
+    border-radius: 20px;
+    box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.3);
+}
+
+.container h2 {
+    margin-top: 0;
+    text-align: center;
+    font-size: 24px;
+    color: white;
+}
+
+.container input[type="text"],
+.container input[type="number"] {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    box-sizing: border-box;
+    font-size: 18px;
+}
+
+.container button {
+    background-color: #49243E;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s;
+}
+
+.container button:hover {
+    background-color: #704264;
+}
+
+.container {
+    padding: 20px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.item input[type="text"],
+.item input[type="number"] {
+    flex: 1;
+    margin-right: 10px;
+    padding: 8px;
+    font-size: 16px;
+}
+
+.item input[type="checkbox"] {
+    margin-right: 10px;
+    transform: scale(1.5);
+    /* Increase checkbox size */
+}
+
+.item.done {
+    text-decoration: line-through;
+    color: gray;
+}
+
+.delete-btn {
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Styles to keep entry panels always at the top */
+.entry-panels {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.entry-panels input[type="text"],
+.entry-panels input[type="number"] {
+    flex: 1;
+    margin-right: 10px;
+    padding: 8px;
+    font-size: 16px;
+}
+
+.entry-panels button {
+    padding: 8px 16px;
+    background-color: #49243E;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.entry-panels button:hover {
+    background-color: #704264;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 425px) {
+    .entry-panels {
+        flex-direction: column;
+    }
+
+    .entry-panels input[type="text"],
+    .entry-panels input[type="number"],
+    .entry-panels button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+/* Your existing CSS styles here */
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #BB8493;
+    border-radius: 20px;
+    box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.3);
+    border: 4px solid #49243E;
+}
+
+.container h2 {
+    margin-top: 0;
+    text-align: center;
+    font-size: 24px;
+    color: white;
+}
+
+.container input[type="text"],
+.container input[type="number"] {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    box-sizing: border-box;
+    font-size: 18px;
+}
+
+.container button {
+    background-color: #49243E;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s;
+}
+
+.container button:hover {
+    background-color: #704264;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.item input[type="text"],
+.item input[type="number"] {
+    flex: 1;
+    margin-right: 10px;
+    padding: 8px;
+    font-size: 16px;
+}
+
+.item input[type="checkbox"] {
+    margin-right: 10px;
+    transform: scale(1.5);
+}
+
+.item.done {
+    text-decoration: line-through;
+    color: gray;
+}
+
+.delete-btn {
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.entry-panels {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.entry-panels input[type="text"],
+.entry-panels input[type="number"] {
+    flex: 1;
+    margin-right: 10px;
+    padding: 8px;
+    font-size: 16px;
+}
+
+.entry-panels button {
+    padding: 8px 16px;
+    background-color: #49243E;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.entry-panels button:hover {
+    background-color: #704264;
+}
+.container input[type="text"] {
+    width: calc(100% - 80px);
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    box-sizing: border-box;
+    font-size: 18px;
+}
+
+.container button {
+    background-color: #49243E;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s;
+}
+
+.container button:hover {
+    background-color: #704264;
+}
+
+.todo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #DBAFA0;
+    border-radius: 5px;
+}
+
+.todo-item span {
+    flex: 1;
+    font-size: 18px;
+}
+
+.todo-item button {
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#clearAllBtn {
+    display: block;
+    margin: 10px auto;
+    background-color: #49243E;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s;
+}
+
+#clearAllBtn:hover {
+    background-color: #704264;
+}
+#result{
+    text-align: center;
+}
+#unitSelector{
+    height: 37px;
+    width: 280px;
+    font-size: medium;
+    margin: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+    </style>
+<body>
+    <div class="navi">
+        <h1>DAILY EASE COMPANION</h1>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </div>
+    <div class="options" id="menu">
+        <a href="shopping.html">Shopping</a>
+        <a href="todo.html">To-Do List</a>
+        <a href="password.html">Password Manager</a>
+        <a href="units.html">Units Converter</a>
+        <a href="currency.html">Currency Converter</a>
+        <a href="index.html">Home</a>
+    </div>
+    <div class="container">
+        <h2>BMI Calculator</h2>
+        <label for="weight">Weight (kg):</label>
+        <input type="number" id="weight" placeholder="Enter your weight in kg"><br><br>
+        <label for="height">Height (cm):</label>
+        <input type="number" id="height" placeholder="Enter your height in centimeters"><br><br>
+        <button onclick="calculateBMI()">Calculate BMI</button>
+        <p id="bmiResult"></p>
+    </div>
+    <p>created by team Invincibles MRCET</p>
+
+    <script>
+        function toggleMenu() {
+            var options = document.querySelector('.options');
+            options.classList.toggle('show');
+        }
+
+        function calculateBMI() {
+            var weight = document.getElementById("weight").value;
+            var height = document.getElementById("height").value / 100; // Convert cm to meters
+            var bmi = weight / (height * height);
+            document.getElementById("bmiResult").innerHTML = "Your BMI is: " + bmi.toFixed(2);
+        }
+    </script>
+</body>
+
+</html>
